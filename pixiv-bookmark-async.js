@@ -1,4 +1,4 @@
-/*
+﻿/*
 // ==UserScript==
 // @namespace   com.whoopsworkshop.hkgsherlock.userjs.pixiv_bookmark_async
 // @id          com.whoopsworkshop.hkgsherlock.userjs.pixiv_bookmark_async
@@ -6,6 +6,7 @@
 // @name        Pixiv Bookmark async
 // @version     201709211434+8
 // @author      hkgsherlock
+// @license     Unlicense
 // @description Add a bookmark in Pixiv on background using Fetch API.
 // @include		/^https?:\/\/www\.pixiv\.net\/member_illust\.php?.*mode=(medium|manga).*$/
 // @grant       none

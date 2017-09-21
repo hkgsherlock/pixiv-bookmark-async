@@ -4,7 +4,7 @@
 // @id          com.whoopsworkshop.hkgsherlock.userjs.pixiv_bookmark_async
 // @icon        data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAAAA3NCSVQICAjb4U/gAAAAYnpUWHRSYXcgcHJvZmlsZSB0eXBlIEFQUDEAAHicVcixDYAwDADB3lN4hHccHDIOQgFFQoCyf0EBDVee7O1so696j2vrRxNVVVXPkmuuaQFmXgZuGAkoXy38TEQNDyseBiAPSLYUyXpQ8HMAAAUhSURBVFiF7ZltbBRFHMafmd29Xq9vh32lFNsCpYS38CZqFYtBG1FD0Eg0qBGNQQJBEZSgX/xmbUJCCKJGQxASEzQBCyRFECKQkFSFtOUKpWdbELgXoC29tne9u92d8cOVsne97W4LS/zAk/tyz8zO/G7mPzP/nSP46iiSSQSKbQJLWnZvUjiuyapeqaj7GNAe1X3MOtEH3+XIeghkpIdARtJdZcnFAcbBOHjsoykiBBSgBJSCWA3EOFQGhUEU3i4dN2981uTstNwMe6ZdEgXKOQ9GlM7+yJXu4Flvzw9tXZBVSAKEsZARvY1xUApDRFlUmLl6blFlWf7ER9LMNNp+s7f2vOeT+n/BOSRhVFg6QByQVTBeU1HyzuOl+ZmpCeVd/WFfYKA7FGWMO2xCXkZqSU768GZ+Pnvljd9aQAhEs8GaDEhWwbFrSdl7FVO0dlhWjzR7Drb497R1QuWg5O5PZxyMvzY5e9W8iS/NKor7aRwf7j/3tcsPhzR6IMYRkqsXlW5+fjoldwfaHxj48njLjibvYGQIOnPAOGQVIq1bNmvpzAnakoONV5cfOI8022iAIspj2Y7aNxcWOh3aGtv/uLThxD9wSBDMDTsHBuRV5bm7Vy7U2vUdt57c/SfSDZjoYBP90Z2VU/5atziBBsCOJi/SbWZpABDAIf3Y0bX4u9Na+4lJuYdXzEFINgJiHLLqWvPU2sqpMYvzuBpp5lG0koRTncH39/2t9V6eXbRpTiGUkZIaOjFF7Pv0uZkTxsW+1xy70Oy5PRaCZEy7Wm7+ftGr9ba+Mhcc4HrPgLrXL063D8b/lkNNW0602SXh/gABSJWqal0J3k9V5dBP0OhQ99VHL9Q0eEwuTrMigKIeafZovZULS6HqztpgfJxs9X9+5jLsozzazEgSdp29muBtmD1ej4kCUBl/9pcGOIw3ibGIkv2XuxO8F8rzoSSPI3o7FBUogcrv5Yg2ECFtN3u1xoxCJ5jOCG062AjAQhoAFJ6ekNYodDr0Fhrd3dEt1hxDigXRMyRC+sJx+yElBDT5GFCIVOUWj9BoRAHraTjPSh22YphOUFvMMtj3o/GZnbcnpDcKDwSIkuLsuPTN5bkNmrxr64EUtnHW+ATv8EU/RL2gtloR5YOKSVpDVtnOZr9ePmMxkMLeKs+dmp+l9b497Yak26+VQBxg/PsVC7ReTyj60cl26CcUlgFxIBRtXV2Raovre/ne+pGPcGMghetnU3pSGaLKpbWLEiZr44GGU7eCenu0WaCyjBSEZCgsMbfVQwlGXy9yBrdUlRfE0WyubdzW7IPNIPszPsJq361w3wj82nR9u8vnC4QhUFACQkDubPEc4ByMQ2GrpuVtqiwbSohjiijqq3vq67y9Zk7MYS+KYcW95umy/MyktfvCstsfuNId9AQGOkPRUFRlnKeniMVOx4yCrAWlOeKw6TjcdG3ZoWYIxOR7izHyN6fdVdMKpuRlAsiwS/NLcuaX5Jhpus51ff3x1o7eCFJE88elMdDWc9fXHXfDYftsRv4zpTkzC51F+lcOXf3hhqvdda03trl8AGATRpsWG9fOEGks868+76tu9EJl4JjstM8Z58hLk9JEIcp4IKK0BcJnbgWhMggUIhlzgmX6MYI7NxgCgPaI0u7r1aw7AgKkCLHSe9FYE8XYKrMgk/rf3TE+BDKSMRAf4WbAAsUDMY4BmcRHap/C8AD/hdEAMb68IKPni6WxTXlIlz9esu/F6SPcV9xf/QdhL+PXM2v0PQAAAABJRU5ErkJggg==
 // @name        Pixiv Bookmark async
-// @version     201709211434+8
+// @version     201709211745+8
 // @author      hkgsherlock
 // @license     Unlicense
 // @description Add a bookmark in Pixiv on background using Fetch API.
@@ -17,7 +17,9 @@ const PIXIV_API_URL = 'https://www.pixiv.net/rpc/index.php';
 const BUTTON_TARGET_QUERY = '.bookmark-container .add-bookmark';
 
 (() => {
-	document.querySelector(BUTTON_TARGET_QUERY).addEventListener('click', (e) => {
+	const target = document.querySelector(BUTTON_TARGET_QUERY);
+
+	target.addEventListener('click', (e) => {
 		e.preventDefault();
 
 		const queryString = document.location.search.substr(1)
@@ -87,4 +89,6 @@ const BUTTON_TARGET_QUERY = '.bookmark-container .add-bookmark';
 			})
 			.catch((err) => console.error(err));
 	});
+
+	target.querySelector('.description').textContent += '*';
 })();
